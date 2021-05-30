@@ -41,8 +41,11 @@ export default {
             email:_user.email,
             password:_user.password,
         }
-        dispatch("login", user)
-        console.log(user);
+        
+        dispatch('login', user)
+
+
+        
       },
 
         login: ({ commit }, {user, route}) => {
@@ -61,6 +64,8 @@ export default {
                                 }
                             }
                         })
+
+                        return console.log(this.res);
             },
 
 

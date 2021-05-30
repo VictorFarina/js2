@@ -93,7 +93,7 @@ export default {
 
   methods: {
     
-    ...mapActions(['register','login']),
+    ...mapActions(['register']),
 
     addUser() {
       // return console.log(this.user);
@@ -111,49 +111,5 @@ export default {
 <style>
 
 </style>
-
-
-  
-
-
-
-
-
-
-
-
-
-  
-  
-
-    
-
-
-  
-
-
-
- 
-
-  
-
- 
-
-  
-
-
-
-
-//   computed:{
-
-//     ...mapGetters(['users','cart'])
-
-//   },
-
-
-//   methods:{
-//      ...mapActions(['addUser'])
-// }
-
 
 
