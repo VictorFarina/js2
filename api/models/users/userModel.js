@@ -1,7 +1,7 @@
 'use strict'
 
 const mongodb = require('mongoose');
-const User = require('./userSchema');
+const User = require('../users/userSchema');
 const bcrypt = require('bcrypt');
 const auth = require('../../auth/auth');
 
@@ -27,6 +27,7 @@ exports.registerUser = (req, res) => {
     }
 
     const salt = bcrypt.genSaltSync(10);
+
     bcrypt.hash(req.body.password, salt, (err, hash) => {
       if (err) {
 
@@ -38,6 +39,8 @@ exports.registerUser = (req, res) => {
         })
       }
 
+      
+
       const newUser = new User ({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -45,6 +48,10 @@ exports.registerUser = (req, res) => {
         passwordHash: hash
 
       })
+
+      console.log(newUser);
+
+      
 
       newUser.save()
         .then(() => {
@@ -56,10 +63,12 @@ exports.registerUser = (req, res) => {
         })
 
         .catch( err => {
+          
+
           res.status(500).json({
             statusCode: 500,
             status: false,
-            message: 'Failed to create user',
+            message: newUser+'Failed to create user',
             err
           })
         })

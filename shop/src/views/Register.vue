@@ -97,6 +97,7 @@ export default {
 
     addUser() {
       // return console.log(this.user);
+     
       this.register(this.user)
 
     }

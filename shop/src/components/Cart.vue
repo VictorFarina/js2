@@ -6,11 +6,14 @@
 
                   <h5 class="col-0">Total:{{cartTotal +' '+'sek'}}</h5>
 
-                  <router-link v-show="$route.name!=='Checkout'" v-if="loggedIn" to="/checkout" class="btn-primary col-2 nav-link">CHECKOUT</router-link>
+                  <router-link v-show="$route.name!=='Checkout'" v-if="loggedIn" to="/checkout" 
+
+
+                  class="btn-primary col-2 nav-link">CHECKOUT</router-link>
 
                   <router-link  v-if="!loggedIn" to="/checkout" 
 
-                  class="btn-dark col-6 nav-link">CHECKOUT</router-link>
+                  class="btn-primary col-6 nav-link">LOGIN TO CHECK OUT</router-link>
 
               </div>
   </div>

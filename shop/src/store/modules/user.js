@@ -1,53 +1,43 @@
 import axios from '@/axios'
 import router from '@/router'
-
 export default {
-    
     state: {
-
         loggedIn: false,
         activeUser:{
         }
-
     },
-
-
     getters: {
         loggedIn: state => state.loggedIn,
         activeUser: state=> state.activeUser
     },
-
     mutations: {
         LOGIN_USER: (state, data) => {
             state.loggedIn = true
             state.activeUser = data
         }, 
-    
         LOGOUT_USER: state => {
             state.loggedIn = false
-
             console.log(state.loggedIn);
-        },
-
-        
+        },  
     },
-
     actions: {
 
       register:async ({dispatch}, _user) => {
-        await axios.post('users/register',_user)
+        
 
+        await axios.post('users/register',_user)
         let user = {
             email:_user.email,
             password:_user.password,
         }
+
         
+
+        
+
         dispatch('login', user)
-
-
-        
       },
-
+      
         login: ({ commit }, {user, route}) => {
             axios.post("users/login", user)
                 .then(res => {
@@ -55,21 +45,15 @@ export default {
                         commit("LOGIN_USER", 
                         { ...res.data.user,
                         token:res.data.token});
-
                             if(route) {
                                 router.push(route)
-
                                 } else {
                                     router.push('/')
                                 }
                             }
                         })
-
                         return console.log(this.res);
             },
-
-
-
         addToOrders: ({ commit }, {userCart})  => {
             axios.patch('users/addorder/', userCart)
             .then(res => {
@@ -79,17 +63,10 @@ export default {
                 .catch( err => {
                     console.log(err)
                 })
-
             }
-
-
-
          })
-
         }
-
     }
-
 }
 
         
