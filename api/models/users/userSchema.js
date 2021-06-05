@@ -19,3 +19,10 @@ const userSchema = mongodb.Schema ({
 })
 
 module.exports = mongodb.model('User', userSchema);
+
+
+//SKAPA ETT SCHEMA FÖR VAD VARJE USER OBJECTSKA INNEHÅLLA 
+//----hämta mongo db 
+//----skapa ett mongodb schema som faställer properties fö schemat
+//----exportera modulen som "User" vilket automatiskt skapar en collection av "Users " i mongodb. 
+

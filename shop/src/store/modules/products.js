@@ -3,15 +3,12 @@ import axios from '@/axios'
 export default {
 
     state: {
-        
         products: [], //<---- array to fill with objects from database trough axios
         product: null, //<----changing value  selected product when entering productPage,reset back to null if going back.
     },
     getters: {
-
         products: state => state.products, //<-access to---products[]---in state
         product: state => state.product, //<---access to---product------in state
-
     },
     
     mutations: {
@@ -31,10 +28,8 @@ export default {
             const res = await axios.get('/products')
             commit('SET_PRODUCTS', res.data)
         },
-
-        getThisProduct: async ({commit}, _id) => {
-
-            const res = await axios.get('/products' + '/' + _id)
+        getThisProduct: async ({commit}, id) => {
+            const res = await axios.get('/products' + '/' + id)
             commit('SET_PRODUCT', res.data)
             
         },

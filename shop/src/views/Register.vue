@@ -76,37 +76,27 @@ export default {
   data() {
 
         return {
-          
           user: {
           firstName:'',
           lastName:'',
           password:'',
           email:'',
-          
         }
       }
   },
-  
   computed: {
     ...mapGetters(['cart','loggedIn'])
   },
-
-  methods: {
-    
+  methods: { 
     ...mapActions(['register']),
 
     addUser() {
       // return console.log(this.user);
-     
       this.register(this.user)
-
+      
     }
-
-
   }
 }
-
-
 </script>
 
 <style>

@@ -2,7 +2,9 @@
 
 <div>
     <Navbar/>
-    <router-view/>
+      <div class="bg">
+            <router-view/>
+      </div>
     <Footer/>
 </div>
  
@@ -36,5 +38,9 @@ export default {
 
 
 <style>
+
+.bg {
+  min-height: 100vh;
+}
 
 </style>

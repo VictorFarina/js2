@@ -22,11 +22,18 @@
     <div class="row d-flex align-items-center">
        
           <li v-if="loggedIn">
-          <router-link  class="nav-link" to="/checkout"><i class="fas fa-user"></i></router-link >
+
+          <router-link  class="nav-link" to="/checkout" @click="logout"><i class="fas fa-user"></i></router-link >
+
           </li>
         <li v-else>
           <router-link  class="nav-link col-3" to="/checkout"><p>LOGIN</p></router-link >
         </li>
+
+        <button v-if="loggedIn" @click="logout">logout</button>
+
+        
+       
 
         <h4 class="qty">{{cartCounter}}</h4>
       <!-- Button trigger modal -->
@@ -73,7 +80,7 @@
   </nav>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 import Cart from "./Cart";
 
@@ -96,11 +103,10 @@ export default {
 
   methods:{
 
-   
-
-  
-  
-    
+    ...mapActions(['logoutUser']),
+    logout(){
+      this.logoutUser()
+    }
   }
 
 

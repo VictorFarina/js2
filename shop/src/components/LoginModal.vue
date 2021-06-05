@@ -1,36 +1,35 @@
 <template>
-  <form class="log-in" @submit.prevent="logIn">
-
-    
+  <form class="log-in" @submit.prevent="handleForm">
 
     <div class="input-group">
       <div class="col-5 card">
         <div class="form-outline">
           <input
-
-
-
-          v-model="email"
+            v-model="email"
             type="text"
             id="formControlLg"
             class="form-control form-control-lg !is-invalid !is-valid"
             placeholder="e-mail"
             autocomplete="off"
           />
+
           <label class="form-label" for="formControlLg"></label>
+
         </div>
         <div class="form-outline">
 
           <input
             v-model="password"
-            type="text"
+            type="password"
             id="formControlLg"
             class="form-control form-control-lg"
             placeholder="password"
             autocomplete="off"
-
           />
+
+
           <label class="form-label" for="formControlLg"></label>
+
         </div>
         <div class="form-outline">
 
@@ -53,40 +52,37 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-
   name: "LoginModal",
       data() {
-
     return {
+
       email: "",
       password: ""
 
     }
-
   },
-
   computed: {
-    ...mapGetters(["loggedIn"]),
+    ...mapGetters(['loggedIn']),
   },
 
   methods: {
 
-    ...mapActions(["login"]),
-    logIn() {
-      let user = {
+    ...mapActions(['login']),
+
+    handleForm() {
+       const user = {
         email: this.email,
-        password: this.password,
-      }
+        password: this.password
+       }
+      let route = this.$route.query.redirect
+      this.login(user,route);
+
+    }
 
 
-     let route = this.$route.query.redirect;
-      this.login({ user, route });
+  }
 
-    },
-
-
-  },
-};
+}
 </script>
 
 <style scoped>

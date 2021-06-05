@@ -1,37 +1,33 @@
 <template>
-      <div class="product-card col-3 mb-4">       
-        <div class="card collection-card">
 
-<!--IMG----------------------------------------------->             
+<div to="/product" class="card-container">
+  <div class="product-cards">
+    <div class="card-info">
 
-            <div class="view zoom">               
-              <router-link :to="{ name:'ProductPage' , params: {id :item._id} }"> <!-- route link to component with name ProductPage -->
-                                      <!--  defining prop ^as Item_Id^to use in child component productPage-->
-                <img class="card-img-top product-img" 
-                :src="item.img" alt="..."> <!-- refering to the object in array wich was defined as prop: ["product"] in parent -->
-                <p class="see-more position-absolute">see more</p>
-              </router-link>
-            </div>
-<!--NAME----------------------------------------------------> 
-          <div class="card-body">
-              <p>{{item.name}}</p> <!-- refering to the object in array wich was defined as prop: ["product"] in parent -->
-              <small class="grey-text">{{item.desc}}</small>
-               
-<!--PRICE------------------------------------------>     
-            <h5 class="font-weight-bold blue-text mb-0">
-              <strong>{{item.price}}</strong> <!-- refering to the object in array wich was defined as prop: ["product"] in parent -->
-            </h5>
-<!---------------------------------------------------->                
- <!--BUTTON-------------------------------------------->  
-<div class="row">
-          <button class="btn-block btn-dark" 
-            @click="addToCart({product:item, quantity:1})">
-              BUY
-          </button>                  
-</div>
-         </div>          
+      <router-link :to="{ 
+        name:'ProductPage' , 
+        params: {id :item._id} }"> 
+        
+        <img :src="item.img" alt="#">
+      </router-link>
+
+      
+      
+        <h3>{{item.name}}</h3>
+        <small>{{item.desc}}</small>
+        <p>{{item.price}}</p>
+       
+        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, voluptatibus?</small>
+
+
+        <div class="card-buttons">   
+          <i @click="addToCart({product:item,quantity:1})" class="fas fa-shopping-bag"></i>        
         </div>
-      </div>
+
+    </div>
+  </div>
+</div>
+
 </template>
 
 <script>
@@ -52,30 +48,62 @@ export default {
     ...mapGetters(['product']) 
   },
 
-  // created () {
-  //   this.getThisProduct(this.id)
-  // }
+  created () {
+    this.getThisProduct(this.id)
+  }
 }
 //----------------------------------------------------
 </script>
 <style scoped>
-.see-more{
-  width: 100%;
- box-shadow: 1 1 1 1;
-  top: 50%;
-  opacity:0%;
+
+
+
+*  { 
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
-.zoom:hover .product-img{
-  opacity:20%;
-  transition: 3s;
+
+
+
+ 
+.card-container {
+  display:flex;
+  flex: 1;
+  width:300px;
 }
-.zoom:hover .see-more{
-  opacity:100%;
-  transition:1s;
+
+.card-info img{
+  height: 300px;
 }
+
+.product-cards {
+  min-width: 33.33%;
+  border-radius: 25px;
+  min-width:300px;
+  min-height:500px;
+  gap: 5rem;
+  max-height: 30rem;
+  margin:auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+
+.product-cards :hover {
+
+  cursor: pointer;
+  background-image: 
+        linear-gradient(to right, rgba(255, 0, 0, 0.164) , rgba(255, 255, 0, 0.219));
+  
+}
+
 .logga {
     position:absolute;
     top:35%;
     left:35%;
 }
+
+
 </style>

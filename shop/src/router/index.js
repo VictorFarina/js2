@@ -9,17 +9,17 @@ import ProductPage from '../views/ProductPage.vue'
 import UserView from '../views/UserView.vue'
 import Checkout from '../views/Checkout.vue'
 import store from '@/store'
-
 Vue.use(VueRouter)
 
-const routes = [
 
+
+
+const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
   },
-
 
   {
     path: '/about',
@@ -32,6 +32,7 @@ const routes = [
     name: 'Products',
     component: Products
   },
+
   {
     path: '/login',
     name: 'LoginModal',
@@ -39,22 +40,17 @@ const routes = [
   },
 
   {
-
     path: '/register',
     name: 'Register',
     component: Register,
    
-
-    
   },
 
   {
-    
     path: '/products/details/:id',
     name: 'ProductPage',
     component: ProductPage,
     props:true ,
-    
   },
 
   {
@@ -67,10 +63,6 @@ const routes = [
 
     meta: { authorize: true }
 
-    
-   
-
-   
 
   },
 
@@ -88,12 +80,13 @@ const routes = [
 
   },
 
-  
-
-
-
-  
 ]
+
+  
+
+
+  
+
 
 const router = new VueRouter({
   mode: 'history',
@@ -101,19 +94,31 @@ const router = new VueRouter({
   routes
   
 })
+
 router.beforeEach((to, from, next) => {
+
   const { authorize } = to.meta
+  
   const isLoggedIn = store.getters.loggedIn
   
    if(authorize) {
+
      if(!isLoggedIn) {
+
        next({ path: '/login', query: {redirect:to.fullPath} })
+
      } else {
+
        next()
+
      }
    }
+
  next()
+
 })
+
+
 
 
 export default router

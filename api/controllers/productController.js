@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const productModel = require('../models/products/productModel')
-const auth = require('../auth/auth')
+// const auth = require('../auth/auth')
 
 //hämta data från db-------------------------------
 //skapa en route vid vilken och ange en endpoint där funktionen getProducts som deklarerats i productModel.js körs

@@ -1,87 +1,25 @@
 <template>
-<div class="product-page">
 
-   <div class="row">
-            <div class="col-6">
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum dolor a alias pariatur recusandae beatae ad quo autem natus, praesentium, quae at deleniti voluptas saepe, quas aperiam sunt ducimus commodi?</p>
-            </div>
-            <div v-if="product" class="container my-5 py-5 z-depth-1 row d-flex col-6">
-      <section class="text-center">
+  <div class="product-page">
+    <div class="details-card">
 
-          
-        
-        <div>
-
-
-
-        
-    <!--IMAGE--------------------------------------------------->  
-          <div class="col-md-6 col-sd-1">
-            <img :src="product.img" alt="">
-          </div>
-
-    <!--NAME--------------------------------------------------->  
-          <div class="col-md-6 col-sd-1 text-md-left text-sd-center">
-            <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
-              <strong>{{product.name}}</strong>
-            </h2>
-            <span class="badge badge-dark product mb-4 ml-xl-0 ml-4">{{product.desc}}</span>
-
-    <!--PRICE--------------------------------------------------->  
-            <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
-              <span class="blue-text font-weight-bold">
-                <strong>{{product.price}}</strong>
-              </span>
-              <span class="grey-text">
-                <small>
-                  <small>  SEK</small>
-                </small>
-              </span>
-            </h3>
-
-
-           
-
-
-    <!--BUTTON-------------------------------------------->    
-
-            <button  @click="addToCart({product, quantity})" class="btn btn-dark btn-block">
-                ADD TO CART
-            </button>            
-          
-    <!---------------------------------------------------->  
-
-          </div>
+        <div class="card-content" style="width: 50%; float:left">
+          <img :src="product.img" alt="">      
         </div>
-      </section>
-    </div> 
 
-    <div v-else>
+        <div class="product-info" style="width: 50%; float:right" >
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.desc }}</p>
+            <p>{{ product.price }}</p> 
 
-      <div class="spinner-border justify-content-center" role="status">
-          <span class="visually-hidden">Loading...</span>
-      </div>
+          <button @click="addToCart({product,quantity:1})" class="fas fa-shopping-bag"></button>     
 
-    </div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-            
           </div>
-
-
-    
+    </div>
+          
+  </div>
 </template>
+
 <script>
 //----IMPORTS-----------------------------------------------------------------------
 import { mapActions,mapGetters} from 'vuex'
@@ -90,11 +28,7 @@ export default {
   name:'ProductPage',
   props:['id'], //<-----the prop defined in the parent
 
-  data(){
-    return{
-      quantity:1 //defining value on the second parameter in addToCart()
-    } 
-  },
+  
   
   methods: {
     ...mapActions(['getThisProduct','resetToNull','addToCart']),
@@ -116,19 +50,42 @@ export default {
 }
 //-------------------------------------------------------------------------------
 </script> 
-<style>
 
-.product-page{
-  width:90%;
-  margin:auto;
+<style scoped>
+
+.card-content {
+  margin-top: 5rem;
   
 
   
 }
 
-img{
-  max-height: 400px;
+.card-content img {
+  display: block;
+  margin: auto;
 }
+
+
+.product-info{
+  text-align: center;
+  border: 1px black solid;
+  margin-top: 3rem;
+}
+
+
+.details-card {   
+  border: 1px black solid;
+  display: flex;
+  flex: row;
+  width: 80%;
+  height: 50rem;
+  margin: auto;
+
+}
+
+
+
+
 
 
 </style>

@@ -1,15 +1,19 @@
 import axios from '@/axios'
 import router from '@/router'
+
 export default {
+
     state: {
         loggedIn: false,
         activeUser:{
         }
     },
+  
     getters: {
         loggedIn: state => state.loggedIn,
         activeUser: state=> state.activeUser
     },
+
     mutations: {
         LOGIN_USER: (state, data) => {
             state.loggedIn = true
@@ -20,56 +24,56 @@ export default {
             console.log(state.loggedIn);
         },  
     },
+
     actions: {
 
-      register:async ({dispatch}, _user) => {
+            register: async ({ dispatch }, _user) => { 
+                await axios.post('users/register', _user)  
+                        const user = {
+                        email:    _user.email, 
+                        password: _user.password                  
+                        }
+                            dispatch('login',user) 
         
+        },
 
-        await axios.post('users/register',_user)
-        let user = {
-            email:_user.email,
-            password:_user.password,
-        }
+           
+        login: ({commit}, user, route ) => {
+            axios.post('users/login', user)
+            .then( res => {
+               if(res.status === 200) {
+                   commit('LOGIN_USER', { ...res.data.user, token: user.token })  
 
-        
+                   if (route) {
+                    router.push(route)   
+                   } else  {
+                       router.push('/products')                                
+                 }   
+               }
+           })
+        },
+          logoutUser: ({commit}) => {commit('LOGOUT_USER')},
 
-        
-
-        dispatch('login', user)
-      },
-      
-        login: ({ commit }, {user, route}) => {
-            axios.post("users/login", user)
+            addToOrders: ({ commit }, {userCart})  => {
+                axios.patch('users/addorder/', userCart)
                 .then(res => {
                     if(res.status===200) {
-                        commit("LOGIN_USER", 
-                        { ...res.data.user,
-                        token:res.data.token});
-                            if(route) {
-                                router.push(route)
-                                } else {
-                                    router.push('/')
-                                }
-                            }
-                        })
-                        return console.log(this.res);
-            },
-        addToOrders: ({ commit }, {userCart})  => {
-            axios.patch('users/addorder/', userCart)
-            .then(res => {
-                if(res.status===200) {
-                    commit('LOGOUT_USER')
-            
-                .catch( err => {
-                    console.log(err)
-                })
+                        commit('LOGOUT_USER')  
+                    .catch( err => {
+                        console.log(err)
+                    })
+                }
+            })
             }
-         })
-        }
-    }
-}
 
-        
+            
+
+
+
+
+
+    }
+  }      
 
     
             

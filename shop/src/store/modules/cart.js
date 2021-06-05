@@ -1,112 +1,77 @@
 // import axios from '@/axios'
-
-
 export default {
+
   state: {
+
     cart: [], //<---array to fill with objects from products[]
+
   },
+
   getters: {
-
-    cart: state => state.cart, //<---------access to---cart[]-------in state 
-
+    cart: state => state.cart, 
+    //<---------access to---cart[]-------in state 
     cartCounter: state => {
       let counter = 0
-      state.cart.forEach(item => {
+      state.cart.forEach( item => {
         counter += item.quantity
       })
-
       return counter
     },
 
-    cartTotal: state => {
-      let total = 0
-      state.cart.forEach(item => {
-        total += item.product.price * item.quantity
-      })
-      return total
+    cartTotal: (state) => {
+      let price = 0;
+      if (state.cart.length !== 0) {
+        state.cart.forEach((item) => {
+          price += item.product.price * item.quantity;
+        })
+      }
+      return price;
     }
+
   },
 
-
-
-
-
   mutations: {
-    ADD_TO_CART: (state, {product,quantity }) => {
+
+    ADD_TO_CART: (state, { product, quantity }) => {
+
       let exists = state.cart.find(item => item.product._id === product._id)
       if (exists) {
         exists.quantity += quantity
         return
       }
-
       state.cart.push({product, quantity})
-    
       //pushing in new object in to cart, with the properties product and quantity
+    }, 
 
+    REMOVE_FROM_CART:(state ,{ product, quantity }) => {
 
-    },
-
-
-    REMOVE_FROM_CART:(state,{product,quantity})=>{
       let exists = state.cart.find(item => item.product._id === product._id)
-      if(exists){
+      if(exists) {
+
         exists.quantity -= quantity
         return
-      }else
+
+      } else
       {
         console.log('cant delete mote');
       }
-
-
-
-
-    
-    
-
     }
-
-
   },
 
+  actions: {
 
-actions: {
-    addToCart: ({commit}, {product,quantity}) => {
-      commit('ADD_TO_CART', {
-        product,
-        quantity
-      })
-    },
-    removeFromCart:({commit},{product,quantity})=>{
-      commit('REMOVE_FROM_CART', {
-        product,
-        quantity
-      })
-    },
-      
-  
-  
+      addToCart: ({commit}, {product,quantity}) => {
+        commit('ADD_TO_CART', {
+          product,
+          quantity
+        })
+      },
+
+      removeFromCart:({ commit },{ product, quantity }) => {
+        commit('REMOVE_FROM_CART', {
+          product,
+          quantity
+        })
+      },   
   }
 }
-
-
-  
-
- 
-
-
-
-
-          
-
-      
-
-          
-
-
-  
-
-
-
-
-
-
