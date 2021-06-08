@@ -43,19 +43,19 @@ export default {
             .then( res => {
                if(res.status === 200) {
                    commit('LOGIN_USER', { ...res.data.user, token: user.token })  
-
                    if (route) {
                     router.push(route)   
                    } else  {
-                       router.push('/products')                                
+                       router.push('/')                                
                  }   
                }
            })
         },
-          logoutUser: ({commit}) => {commit('LOGOUT_USER')},
+
+        logoutUser: ({commit}) => {commit('LOGOUT_USER')},
 
             addToOrders: ({ commit }, {userCart})  => {
-                axios.patch('users/addorder/', userCart)
+                axios.patch('users/addorder', userCart)
                 .then(res => {
                     if(res.status===200) {
                         commit('LOGOUT_USER')  
@@ -64,7 +64,7 @@ export default {
                     })
                 }
             })
-            }
+        }
 
             
 

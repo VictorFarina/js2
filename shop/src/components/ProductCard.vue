@@ -1,32 +1,46 @@
 <template>
 
-<div to="/product" class="card-container">
-  <div class="product-cards">
-    <div class="card-info">
+  <div to="/product">
 
+    <div class="card-top position-relative">
       <router-link :to="{ 
         name:'ProductPage' , 
         params: {id :item._id} }"> 
+        <img 
+        @mouseenter="item.img = item.img3"
+
+        @mouseleave="item.img3 = item.img"
+        class="img1"
+        :src="item.img" 
+        alt="#">
+     
+        <h3 class="see-more btn btn-block position-absolute">quick view</h3>
         
-        <img :src="item.img" alt="#">
+         
+
       </router-link>
 
-      
-      
-        <h3>{{item.name}}</h3>
-        <small>{{item.desc}}</small>
-        <p>{{item.price}}</p>
-       
-        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, voluptatibus?</small>
-
-
-        <div class="card-buttons">   
-          <i @click="addToCart({product:item,quantity:1})" class="fas fa-shopping-bag"></i>        
-        </div>
+     
 
     </div>
+
+    <div class="card-info">
+        <!-- <i @click="addToCart({product:item,quantity:1})" type="button" class="fas fa-shopping-bag"></i>      -->
+        <h5 class="block">{{item.name}}</h5>
+        <small>{{item.desc}}</small>
+        <p>{{item.price +' '+ 'sek'}}</p>
+    </div>
+
+      
+      
+    
+
+
+      
+
+    
   </div>
-</div>
+
 
 </template>
 
@@ -57,53 +71,69 @@ export default {
 <style scoped>
 
 
-
-*  { 
+body { 
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+.card-top {
 
-
- 
-.card-container {
-  display:flex;
-  flex: 1;
-  width:300px;
-}
-
-.card-info img{
-  height: 300px;
-}
-
-.product-cards {
-  min-width: 33.33%;
-  border-radius: 25px;
-  min-width:300px;
-  min-height:500px;
-  gap: 5rem;
-  max-height: 30rem;
-  margin:auto;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  min-height: 200px;
+  max-height: 200px;
+
+
 }
-
-
-
-.product-cards :hover {
-
-  cursor: pointer;
-  background-image: 
-        linear-gradient(to right, rgba(255, 0, 0, 0.164) , rgba(255, 255, 0, 0.219));
+.card-top img{
+  min-height: 100px;
+  max-height: 200px;
+}
+.card-top :hover .see-more {
   
+  opacity: 100%;
+  transition: 0.1s;
+
+}
+.see-more{
+  bottom: 0;
+  z-index: 100;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.76);
+  
+  opacity: 0;
 }
 
-.logga {
-    position:absolute;
-    top:35%;
-    left:35%;
+
+
+
+
+.card-info {
+  padding-top: 1rem;
+  background-color: rgba(247, 247, 247, 0.623);
+  position: relative;
 }
+
+.fa-shopping-bag {
+  box-shadow: 1px 1px 1px 1px;
+  color: rgb(0, 0, 0);
+  font-size: 48px;
+  position: absolute;
+  text-align: center;
+  align-self: center;
+  height: 50px;
+  width:50px;
+  right:5%;
+  top: -30%;
+}
+
+
+
+
+
+
+
+
 
 
 </style>

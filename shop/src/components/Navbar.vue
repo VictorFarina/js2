@@ -1,9 +1,11 @@
 <template>
+
+
+
   <!--Navbar -->
   <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark pt-2 d-print">
-    <router-link class="nav-link active ml-5" to="/"
-      ><img src="../assets/shirtLogo.png" height="40px" alt=""
-    /></router-link>
+    <router-link class="nav-link active ml-5" to="/"><img src="../assets/shirtLogo.png" height="40px" alt=""/></router-link>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="nav justify-content-center">
         <li class="nav-item active ml-5">
@@ -35,23 +37,39 @@
         
        
 
-        <h4 class="qty">{{cartCounter}}</h4>
-      <!-- Button trigger modal -->
-      <div class="dropdown">
-        <i
-        class="fas fa-shopping-bag dropdown-toggle col-1"
-        type="button"
-        id="dropdownMenuButton"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-        >
-        </i>
+       
+      
 
-      <div class="dropdown-menu col-4" aria-labelledby="dropdownMenuButton">
+      
+     
+
+
+
+        <div class="dropdown" v-on:click="displayBlock=!displayBlock">
+            <i class="fas fa-shopping-bag position-relative" type="button" >
+                <span class="cart-counter">
+                    {{cartCounter}}
+                </span>
+              </i>
+          <div 
+          class="dropdown-content d-block">
+
+            <Cart v-if="displayBlock"/>
+
+          </div>
+          
+        </div>
+
         
-        <Cart/>
-      </div>
+
+       
+       
+    
+     
+
+     
+       
+      
 
 
       
@@ -76,7 +94,7 @@
 
     </div>
     
-    </div>
+    
   </nav>
 </template>
 <script>
@@ -87,6 +105,25 @@ import Cart from "./Cart";
 
 
 export default {
+
+     data() {
+        return {
+          displayBlock:false
+
+        }
+      },
+
+  
+
+
+    
+
+
+  
+
+   
+
+
 
   name: "Navbar",
   components: {
@@ -107,6 +144,8 @@ export default {
     logout(){
       this.logoutUser()
     }
+
+
   }
 
 
@@ -120,39 +159,60 @@ export default {
 
 
 
-* {
+body {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.cart {
- min-width: 500px;
-
+.fa-shopping-bag{
+  position: relative;
+  color: #fff;
+  font-size: 36px;
 }
 
-
-
-.dropdown-menu {
+.cart-counter {
+  font-family: 'Montserrat', sans-serif;
+  font-style:oblique;
+  font-size:18px;
+  width: 50%;
   position: absolute;
-  left: -30rem;
+  right: 40%;
+  top: 50%;
+  color: black;
 }
+
+.dropdown{
+  position: relative;
+  display: inline-block;
+
+}
+
+.dropdown-content {
+  background: #fff;
+  display: none;
+  position: absolute;
+  left:-30rem;
+  z-index: 10;
+
+}
+
+
+
+
+
+
+
+
 .nav-link {
   color: #fff;
 }
 
-.dropdown-menu {
-  min-width: 500px;
-}
-i {
-  margin-right: 3rem;
-  color: #fff;
-}
 
-.qty {
-  color: white;
-  margin-right: 1rem;
-}
+
+
+
 
 .bg-nav {
   background-color: rgb(26, 26, 26);

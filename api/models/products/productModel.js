@@ -101,10 +101,9 @@ exports.createProduct= (req, res) => {
         } else {
             const newProduct = new Product({
                 name:   req.body.name,
-                short:  req.body.short,
                 desc:   req.body.desc,
                 price:  req.body.price,
-                image:  req.body.image 
+                image:  req.body.img 
             }) 
             newProduct.save()
              .then(() => {

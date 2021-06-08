@@ -4,17 +4,19 @@
     <div class="details-card">
 
         <div class="card-content" style="width: 50%; float:left">
-          <img :src="product.img" alt="">      
+          <img :src="product.img" alt="">          
         </div>
-
         <div class="product-info" style="width: 50%; float:right" >
+            <h5>{{ product.desc }}</h5>
             <h3>{{ product.name }}</h3>
-            <p>{{ product.desc }}</p>
             <p>{{ product.price }}</p> 
-
-          <button @click="addToCart({product,quantity:1})" class="fas fa-shopping-bag"></button>     
-
-          </div>
+            <button class="btn btn-dark justify-content-space-between" @click="addToCart({product,quantity:1})"> Lägg till i kundvagn</button>
+            <br>
+            <br>
+            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci rem laboriosam debitis veniam amet! Nostrum alias facere dignissimos necessitatibus temporibus.</h4>
+           
+        </div>
+        
     </div>
           
   </div>
@@ -68,7 +70,7 @@ export default {
 
 .product-info{
   text-align: center;
-  border: 1px black solid;
+  
   margin-top: 3rem;
 }
 

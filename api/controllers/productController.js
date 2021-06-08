@@ -13,12 +13,12 @@ router.get('/', productModel.getProducts);
 router.get('/:id',productModel.getProduct);
 //-------------------------------------------------
 //posta data till db-------------------------------
-// router.post('/new', auth.verifyToken ,productModel.createProduct); 
+router.post('/new',productModel.createProduct); 
 //------------------------------------------------
 
 
 //uppdateera data db------------------------------
-// router.patch('/:id', productModel.updateProduct);
+router.patch('/:id', productModel.updateProduct);
 
 //------------------------------------------------
 //radera data db----------------------------------

@@ -1,17 +1,15 @@
 <template>
     <div>
-        <table class="row p-3 border-box shadow-sm">
-                <small class="col-3">{{item.product.name}}</small>
-                <div class="qty-input d-flex">
-
-                <i type=button  @click="removeFromCart({product:item.product, quantity:1})" class="fas fa-minus-square"></i>
-
-                <h3>{{item.quantity}}</h3>
-
-                <i type=button  @click="addToCart({product:item.product, quantity:1})" class="fas fa-plus-square"></i>
-
+        <table class="d-flex">
+               
+                <div class="qty-input li-item row position-relative">
+                    <img class="col-2 cart-img" :src="item.product.img" scale="20px" >
+                    <i class="fas fa-minus-square col-1" type=button  @click="removeFromCart({product:item.product, quantity:1})"></i>
+                    <num type=num min=1 class="col-1">{{item.quantity}}</num>
+                    <i class="fas fa-plus-square col-1" type=button  @click="addToCart({product:item.product, quantity:1})"></i>
+                    <p class="col-1">{{item.quantity*item.product.price}}</p>
                 </div>
-                <small class="col-3">{{item.quantity*item.product.price}}</small>
+                
         </table>
     </div>
 </template>
@@ -36,15 +34,35 @@ export default {
 padding: 3rem;
  color: blue;
 }
-.fas :hover {
+i :hover {
     cursor:pointer;
 }
 .qty-input {
-    justify-content: space-between;
-    margin: auto;
-    text-align: left;
+    background: #fff;
+    
+    text-align:start;
+    padding: 2rem;
+    display: inline-flex;
+    height: 1rem;
+    vertical-align:middle;
+    margin-top: bottom;
+    width: 100%;
 }
-.qty-input h3{
-   margin-right: 3rem;
+
+.qty-input i{
+    padding-top:0
+    ;
 }
+
+.cart-img{
+    
+    columns: 2;
+    position: absolute;
+    top: 20%;
+    left: 1%;
+
+    
+
+}
+
 </style>

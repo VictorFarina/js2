@@ -39,8 +39,14 @@ export default {
 
 <style>
 
+body{
+  font-family:'Montserrat', sans-serif;
+}
+
 .bg {
   min-height: 100vh;
 }
+
+
 
 </style>
