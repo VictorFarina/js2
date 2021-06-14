@@ -113,7 +113,7 @@ exports.loginUser = (req, res) => {
             statusCode: 200,
             status: true,
             message: "Authentication was successfully.",
-            // token: auth.generateToken(user),
+            token: auth.generateToken(user),
           })
         }
 
@@ -133,43 +133,43 @@ exports.loginUser = (req, res) => {
 
 
 
-// exports.getUser = (req, res) => {
-//   User.findOne({ email: req.params.id }).then((user) => {
-//     if (!user) {
-//       return res.status(400).json({
-//         statusCode: 400,
-//         status: false,
-//         message: "You made a bad request.",
-//       });
+exports.getUser = (req, res) => {
+  User.findOne({ email: req.params.id }).then((user) => {
+    if (!user) {
+      return res.status(400).json({
+        statusCode: 400,
+        status: false,
+        message: "You made a bad request.",
+      });
 
-//     } else {
-//       return res.status(200).json({
-//         statusCode: 200,
-//         status: true,
-//         message: "Getting user Successfully",
-//         user, 
-//       });
-//     } 
-//   })
-// }
+    } else {
+      return res.status(200).json({
+        statusCode: 200,
+        status: true,
+        message: "Getting user Successfully",
+        user, 
+      });
+    } 
+  })
+}
 
-// exports.addToOrders =( req, res) => {
-//   User.updateOne ({$push:{orders: req.body}}) 
-//     .then(()=>{
-//       res.status(200).json({
-//         statusCode:200,
-//         status:true,
-//         message: 'user updated'
-//       })
-//     })
-//       .catch(()=>{
-//         res.status(500).json({
-//           statusCode:500,
-//           status:false,
-//           message: 'failed to update user'
-//       })
-//     })
-// }
+exports.addToOrders =( req, res) => {
+  User.updateOne ({$push:{orders: req.body}}) 
+    .then(()=>{
+      res.status(200).json({
+        statusCode:200,
+        status:true,
+        message: 'user updated'
+      })
+    })
+      .catch(()=>{
+        res.status(500).json({
+          statusCode:500,
+          status:false,
+          message: 'failed to update user'
+      })
+    })
+}
 
 
 

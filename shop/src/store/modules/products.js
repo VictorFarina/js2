@@ -17,6 +17,8 @@ export default {
         },
         SET_PRODUCT: (state, product) => {
             state.product = product //
+
+            console.log(state.product)
         },
         RESET_TO_NULL: state => { //<-----reset product value back to null when going back from productPage
             state.product = null
@@ -25,11 +27,11 @@ export default {
     actions: {
 
         getProducts: async ({commit}) => {
-            const res = await axios.get('/products')
+            const res = await axios.get('products');
             commit('SET_PRODUCTS', res.data)
         },
         getThisProduct: async ({commit}, id) => {
-            const res = await axios.get('/products' + '/' + id)
+            const res = await axios.get('products/' + id)
             commit('SET_PRODUCT', res.data)
             
         },

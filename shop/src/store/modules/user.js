@@ -23,7 +23,13 @@ export default {
             state.loggedIn = false
             console.log(state.loggedIn);
         },  
+
+        
+
+
+
     },
+
 
     actions: {
 
@@ -42,7 +48,9 @@ export default {
             axios.post('users/login', user)
             .then( res => {
                if(res.status === 200) {
-                   commit('LOGIN_USER', { ...res.data.user, token: user.token })  
+
+                    console.log(res);
+                   commit('LOGIN_USER', { ...res.data.user})
                    if (route) {
                     router.push(route)   
                    } else  {
@@ -54,7 +62,8 @@ export default {
 
         logoutUser: ({commit}) => {commit('LOGOUT_USER')},
 
-            addToOrders: ({ commit }, {userCart})  => {
+        
+        addToOrders: ({ commit }, {userCart})  => {
                 axios.patch('users/addorder', userCart)
                 .then(res => {
                     if(res.status===200) {

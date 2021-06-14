@@ -1,17 +1,18 @@
 <template>
-    <div>
-        <table class="d-flex">
-               
-                <div class="qty-input li-item row position-relative">
+
+                <div class="cart position-relative">
                     <img class="col-2 cart-img" :src="item.product.img" scale="20px" >
                     <i class="fas fa-minus-square col-1" type=button  @click="removeFromCart({product:item.product, quantity:1})"></i>
-                    <num type=num min=1 class="col-1">{{item.quantity}}</num>
-                    <i class="fas fa-plus-square col-1" type=button  @click="addToCart({product:item.product, quantity:1})"></i>
-                    <p class="col-1">{{item.quantity*item.product.price}}</p>
+                    <p type=num min=1 class="col-1">{{item.quantity}}</p>
+                    <i class="fas fa-plus-square col-1" 
+                    
+                    type=button  @click="addToCart({product:item.product, quantity:1})"></i>
+                    <p class="col-6">{{item.quantity*item.product.price}}</p>
+
                 </div>
                 
-        </table>
-    </div>
+    
+  
 </template>
 
 <script>
@@ -19,17 +20,20 @@
 import { mapActions } from 'vuex'
 export default {
 
-     
-
-   
     props:['item'],
-
     methods:{
         ...mapActions(['addToCart','removeFromCart'])       
     }
 }
 </script>
 <style scoped>
+
+.cart{
+    margin: auto;
+    display: flex;
+    width: 100%;
+    height: 30%;
+}
 .fas, .far {
 padding: 3rem;
  color: blue;
@@ -55,9 +59,14 @@ i :hover {
 }
 
 .cart-img{
+
+    scale: 30px;
+    
+
+    
     
     columns: 2;
-    position: absolute;
+   
     top: 20%;
     left: 1%;
 

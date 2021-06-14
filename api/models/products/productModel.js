@@ -1,5 +1,5 @@
 
-// const mongodb = require('mongoose');
+const mongodb = require('mongoose');
 const Product = require('./productSchema');
 //hämta produkter från databasen----------------------
 //exportera funktionen getProducts(), som sen kan köras  i //app.js
@@ -12,7 +12,7 @@ exports.getProducts = (req, res) => {
         .catch(err => res.status(500).json({
             statusCode:500,
             status:false,
-            message:err.message || 'Something went wrong'
+            message:err.message || 'Something went wrong '+req
         }))
         
 }
@@ -75,7 +75,7 @@ exports.getProduct = (req, res) => {
             res.status(404).json({
                 statusCode: 404,
                 status:     false,
-                message:   err || 'This product does not exist in database'
+                message:    err || 'This product does not exist in database'
             })
         }
     })

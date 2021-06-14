@@ -1,6 +1,6 @@
 <template>
-<div class="confirmation row">
-    <div class="card col-6">
+<form @submit.prevent="onSub" class="confirmation">
+    <div class="card  col-6">
         <Cart/>
     </div>
 
@@ -9,9 +9,8 @@
             <div class="card-body block">
                 <p>Namn:</p>
                 <h4 class="card-title">{{activeUser.firstName +' '+ activeUser.lastName}}</h4>
-                <p>Address:</p>
-                <h4 class="card-title">Sveavägen 54</h4>
-                <button type="button" @click="addUserOrder" class="btn-success btn-block">VERIFIERA</button>
+               
+                <button type="submit" class="btn-success btn-block">VERIFIERA</button>
             </div>
         </div>
     </div>
@@ -22,14 +21,14 @@
         <i class="fab fa-cc-visa"></i>
         <i class="fab fa-cc-mastercard"></i>
     </div>    
-</div>
+</form>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
 import Cart from '../components/Cart'
-import store from '../store'
+
 
 export default {
    
@@ -43,8 +42,9 @@ export default {
      methods: {
 
          ...mapActions(['addToOrders']),
-         addUserOrder(){
-            let userCart = store.getters.cart
+
+         onSub(){
+            let userCart = this.cart
             this.addToOrders({userCart})
          }
     }
@@ -55,7 +55,8 @@ export default {
 <style scoped>
 
 .confirmation {
-    max-width:70%;
+    display: flex;
+    width:90%;
     margin: auto;
 }
 

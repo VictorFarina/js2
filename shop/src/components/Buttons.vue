@@ -1,6 +1,6 @@
 <template>
 
-<button  @click="addToCart({product, quantity})" class="btn btn-primary">
+<button  @click="addToCart({product, quantity:1})" class="btn btn-primary">
     ADD TO CART
 </button>
 

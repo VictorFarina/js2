@@ -1,14 +1,9 @@
 <template>
-  
     <div class="text-center">
-      
         <div class="container">
-            <ProductCard class="product-card" v-for="item in products" :key="item._id" :item="item"/> 
-           <!-- forloop with argument that every item in the array products[] should be keyed with the _id and binded to the prop SelectedProduct so we can reach it in childcompnent ProductCard-->
+            <ProductCard class="product-card" v-for="product in products" :key="product._id" :product="product"/> 
         </div>
-
     </div>
-
 </template>
 
 <script>
@@ -21,6 +16,7 @@ import { mapGetters} from 'vuex'
 export default {
   name:'Products',
   components: {
+
     ProductCard
   },
   computed: {
@@ -36,6 +32,7 @@ export default {
 <style scoped>
 
 .container {
+  margin-top: 20rem;
   height: 100%;
   display: flex;
   width: 100%;
@@ -43,11 +40,13 @@ export default {
   flex-wrap: wrap;
   row-gap: 0.5rem;
   gap: 0.5rem;
+
 }
 
 .product-card {
-  background:#fff;
+  background:rgba(214, 189, 189, 0.349);
   width: 280px;
+  height: 400px;
   margin: auto ;
   box-shadow: 1px 1px 1px 1px rgba(218, 215, 215, 0.329);
 }
