@@ -3,7 +3,7 @@
     <!-- Default form register -->
     <form
       @submit.prevent="addUser"
-      class="text-center border border-light p-5"
+      class="text-center register"
       action="#!"
     >
       <p class="h4 mb-4">Sign up</p>
@@ -99,7 +99,23 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.register{
+  width: 700px;
+  margin: auto;
+  box-shadow: 1px 1px 1px 1px rgba(51, 51, 51, 0.253);
+  margin-top: 5rem;
+}
+.register button{
+  background: #;
+  width: 70%;
+  margin: auto;
+  box-shadow: 1px 1px 1px 1px rgba(51, 51, 51, 0.253);
+  margin-bottom: 5rem;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
 
 </style>
 
