@@ -91,9 +91,14 @@ export default {
   color: rgb(4, 0, 255);
 }
 
-.log-in{
+.log-in {
+  align-content: center;
+  margin-top: 5rem;
   height: 100%;
-  background-color: rgba(255, 228, 196, 0.301);
+}
+.log-in input{
+
+  margin-top: 2rem;
 }
 
 .card {
