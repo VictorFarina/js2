@@ -1,21 +1,19 @@
 <template>
 
-  <div>
-            <CartItemsCard v-for="item in cart" :key="item.product._id" :item="item" /> <!-- using the argument item  to grab every object in  cart[] and :key them with the id and den binding the item to the prop cartItem to use in chilcomponent -->
-              <div class="container">
+  <div class="cart">
+    <CartItemsCard v-for="item in cart" :key="item.product._id" :item="item" /> 
+      <div class="total align-items-center justify-content-around">
+          
+          <router-link class="btn btn-primary"
+            v-show="$route.name!=='Checkout'" v-if="loggedIn" to="/checkout">CHECKOUT
+          </router-link>
 
-                  <h5 class="col-0">Total:{{cartTotal +' '+'sek'}}</h5>
-
-                  <router-link v-show="$route.name!=='Checkout'" v-if="loggedIn" to="/checkout" 
-
-
-                  class="btn-primary col-2 nav-link">CHECKOUT</router-link>
-
-                  <router-link  v-if="!loggedIn" to="/checkout" 
-
-                  class="btn-primary col-6 nav-link">LOGIN TO CHECK OUT</router-link>
-
-              </div>
+          <router-link  class="btn btn-primary"
+            v-if="!loggedIn" to="/login">Login checkout
+          </router-link>
+              
+          <h5>Total:{{cartTotal +' '+'sek'}}</h5>
+      </div>
   </div>
 
 </template>
@@ -59,6 +57,32 @@ export default {
 .nav-link{
   color: #fff;
 }
+
+.cart {
+  z-index: 1000;
+  background: rgb(255, 255, 255);
+  width: 30rem;
+  height: 1000px;
+  position: absolute;
+  right: 0%;
+  top:030;
+  
+}
+
+.total{
+  position: absolute;
+  border:1px solid black;
+  bottom: 20%;
+  display: flex;
+  width: 100%;
+}
+.total p{
+  position: absolute;
+  
+}
+
+
+
 
 
 </style>

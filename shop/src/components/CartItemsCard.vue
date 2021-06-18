@@ -1,13 +1,26 @@
 <template>
 
-                <div class="cart position-relative">
-                    <img class="col-2 cart-img" :src="item.product.img" scale="20px" >
-                    <i class="fas fa-minus-square col-1" type=button  @click="removeFromCart({product:item.product, quantity:1})"></i>
-                    <p type=num min=1 class="col-1">{{item.quantity}}</p>
-                    <i class="fas fa-plus-square col-1" 
-                    
-                    type=button  @click="addToCart({product:item.product, quantity:1})"></i>
-                    <p class="col-6">{{item.quantity*item.product.price}}</p>
+                <div class="shopping-cart">
+
+
+                    <img class="cart-img" :src="item.product.img" height="100px" >
+
+                    <div class="d-flex align-items-center justify-content-around w-100 ">
+                          <i class="fas fa-minus-square" type=button  
+                        @click="removeFromCart({product:item.product, quantity:1})"> 
+                    </i>
+
+                    <num type=num>{{item.quantity}}</num>
+
+                    <i class="fas fa-plus-square" 
+                         @click="addToCart({product:item.product, quantity:1})" type=button>
+                    </i>
+
+                    <small>{{item.quantity*item.product.price}}</small>
+
+                    </div>
+                   
+                  
 
                 </div>
                 
@@ -28,50 +41,37 @@ export default {
 </script>
 <style scoped>
 
-.cart{
-    margin: auto;
+
+
+
+
+.shopping-cart{
+    
+    text-align: center;
+    z-index: 100;
     display: flex;
-    width: 100%;
-    height: 30%;
+    width: 500px;
+    font-size: 40px;
+    column-gap: 2rem;
 }
-.fas, .far {
-padding: 3rem;
- color: blue;
+.shopping-cart img{
+    margin-left: 2rem;
 }
+.shopping-cart i{
+    font-size: 20px;
+    color: rgb(4, 0, 255);
+    
+  
+}
+
 i :hover {
     cursor:pointer;
 }
-.qty-input {
-    background: #fff;
-    
-    text-align:start;
-    padding: 2rem;
-    display: inline-flex;
-    height: 1rem;
-    vertical-align:middle;
-    margin-top: bottom;
-    width: 100%;
-}
 
-.qty-input i{
-    padding-top:0
-    ;
-}
 
-.cart-img{
 
-    scale: 30px;
-    
 
-    
-    
-    columns: 2;
-   
-    top: 20%;
-    left: 1%;
 
-    
 
-}
 
 </style>

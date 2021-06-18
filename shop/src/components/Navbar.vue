@@ -51,8 +51,7 @@
                     {{cartCounter}}
                 </span>
               </i>
-          <div 
-          class="dropdown-content d-block">
+          <div>
 
             <Cart v-if="displayBlock"/>
 
