@@ -1,19 +1,22 @@
 <template>
 
-  <div>
+  <div class="product-card">
     <div class="card-top position-relative">
       <img class="img1" :src="product.img" alt="#">
       <router-link :to="{name:'ProductPage', params: {id: product._id} }">  
-        <h3 class="see-more btn btn-block position-absolute">view</h3>
+        <h3 class="see-more btn btn-block position-absolute">läs mer</h3>
       </router-link>
 
     </div>
 
     <div class="card-info">
-        <!-- <i @click="addToCart({product:item,quantity:1})" type="button" class="fas fa-shopping-bag"></i>      -->
-        <h5 class="block">{{product.name}}</h5>
-        <small>{{product.desc}}</small>
+        
+        <p class="block">{{product.name}}</p>
+        <small>{{product.short}}</small>
         <p>{{product.price +' '+ 'sek'}}</p>
+        <button  @click="addToCart({product, quantity:1})" type="button" class="btn btn-block btn-light foont-weight-700 mb-5 bottom-0">LÄGG I KORGEN</button>     
+       
+
     </div>
 
       
@@ -30,13 +33,24 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 //-----IMPORTS----------------------------------------
+
 
 //-----EXPORTS----------------------------------------
 export default {
 
     name:'ProductCard',
     props:['product'],
+
+
+
+
+
+    methods: {
+      ...mapActions(['addToCart'])
+      
+    }
 
 
 
@@ -54,6 +68,13 @@ body {
   margin: 0;
 }
 
+.product-card {
+  width: 500px;
+  text-align: center;
+  box-shadow: 1px 1px 1px 1px rgba(218, 215, 215, 0.329);
+}
+
+
 .card-top {
 
   margin-top: 2rem;
@@ -66,35 +87,42 @@ body {
   min-height: 100px;
   max-height: 200px;
 }
-.card-top :hover .see-more {
-  
-  opacity: 100%;
-  transition: 0.1s;
 
+.product-card :hover img{
+  -webkit-transform: scale(1.1);
+  transition: 0.5s;
 }
+
+
 .see-more{
+  font-weight:bolder;
   bottom: 0;
   z-index: 100;
+
   color: rgb(255, 255, 255);
-  background-color: rgba(0, 0, 0, 0.76);
+  background-color: rgba(0, 0, 0, 0);
   opacity: 0;
 }
+
+.product-card :hover .see-more {
+  opacity: 100%;
+  bottom: 30%;
+  margin: auto;
+  font-size: 30px;
+  font-weight: bolder;
+   background-color: rgb(0, 0, 0);
+
+  transition: 0.3s ease;
+    -webkit-transform: scale(.5);
+    
+
+  
+
+}
+
 .card-info {
   padding-top: 1rem;
-  background-color: rgba(247, 247, 247, 0.623);
   position: relative;
-}
-.fa-shopping-bag {
-  box-shadow: 1px 1px 1px 1px;
-  color: rgb(0, 0, 0);
-  font-size: 48px;
-  position: absolute;
-  text-align: center;
-  align-self: center;
-  height: 50px;
-  width:50px;
-  right:5%;
-  top: -30%;
 }
 
 

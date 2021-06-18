@@ -1,30 +1,25 @@
 <template>
+    <div class="details-card row col-lg-8 col-sm-12 mx-auto mt-5 pb-5 z-depth-1">
+      <img class="prod-img align-text-"
+      :src="product.img">
 
-  <div class="product-page">
-    <div class="details-card">
-      <div class="product-info">
-        <h3>{{product.name}}</h3>
-        <h5>{{product.desc}}</h5>
-        <h3>{{product.price}}sek</h3>
-        <button class="btn btn-primary block" 
-         @click="addToCart({product, quantity:1})"
-        >ADD TO CHART</button>
-      </div>
-      <div>
-        <img :src="product.img">
-      </div>
-    </div>
-
-    
-      
-
-
+      <div class="product-info col-lg-6 col-sd">
         
-    
-          
-  </div>
-</template>
+        <h3>{{product.name}}</h3>
+        <small>{{product.short}}</small>
+        <h3 class="text-danger">{{product.price}}sek</h3>
+         <button class="btn btn-dark block fw-bold" 
+         @click="addToCart({product, quantity:1})"
+        >Lägg i korgen</button>
+        <br>
+        <br>
+        <small>{{product.desc}}</small>
 
+
+       
+      </div>
+    </div>  
+</template>
 <script>
 //----IMPORTS-----------------------------------------------------------------------
 import { mapActions,mapGetters} from 'vuex'
@@ -57,8 +52,19 @@ export default {
 
 <style scoped>
 
-.card-content {
-  margin-top: 5rem;
+
+/* .details-card {  
+  margin-top:10rem;
+  margin-left:auto;
+  margin-right:auto;
+
+  box-shadow: 1px 1px 1px 1px rgba(51, 51, 51, 0.076);
+  display: flex;
+  flex: row;
+} */
+
+.prod-img {
+  height: 300px;
   
 }
 
@@ -69,23 +75,12 @@ export default {
 
 
 .product-info{
-  text-align: center;
-  margin-top: 5rem;
+  text-align: left;
   margin-left: 2rem;
 }
 
 
-.details-card {  
-  margin-top:4rem;
-  text-align: center; 
-  border: 1px black solid;
-  display: flex;
-  flex: row;
-  width: 80%;
-  height: 50rem;
-  margin: auto;
 
-}
 
 
 

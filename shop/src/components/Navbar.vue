@@ -3,8 +3,10 @@
 
 
   <!--Navbar -->
-  <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark pt-2 d-print">
-    <router-link class="nav-link active ml-5" to="/"><img src="../assets/shirtLogo.png" height="40px" alt=""/></router-link>
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-light pt-2 d-print">
+    <router-link class="nav-link active ml-5" to="/"><img src="@/assets/barbero.png" height="100px" alt=""/></router-link>
+  
+    <h4>papito.se</h4>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
       <ul class="nav justify-content-center">
@@ -34,16 +36,6 @@
 
         <button v-if="loggedIn" @click="logout">logout</button>
 
-        
-       
-
-       
-      
-
-      
-     
-
-
 
         <div class="dropdown" v-on:click="displayBlock=!displayBlock">
             <i class="fas fa-shopping-bag position-relative" type="button" >
@@ -58,36 +50,6 @@
           </div>
           
         </div>
-
-        
-
-       
-       
-    
-     
-
-     
-       
-      
-
-
-      
-
-
-      
-
-
-      
-
-       
-
-
-
-     
-      
-
-    
-
 
 
 
@@ -167,7 +129,7 @@ body {
 
 .fa-shopping-bag{
   position: relative;
-  color: #fff;
+  color: rgb(0, 0, 0);
   font-size: 36px;
 }
 
@@ -179,7 +141,7 @@ body {
   position: absolute;
   right: 40%;
   top: 50%;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .dropdown{
