@@ -1,38 +1,32 @@
 <template>
+                <table class="shopping-cart">
+                    <img class="cart-img" :src="item.product.img" height="50px">
+                    
+                    <span class="item-name col-3">{{item.product.name}}</span>
 
-                <div class="shopping-cart">
-
-
-                    <img class="cart-img" :src="item.product.img" height="100px" >
-
-                    <div class="d-flex align-items-center justify-content-around w-100 ">
-                          <i class="fas fa-minus-square" type=button  
+                    <div class="item-quantity justify-content-end col-5">
+                         <i class="fas fa-minus-square col-1"  
                         @click="removeFromCart({product:item.product, quantity:1})"> 
-                    </i>
+                        </i>
 
-                    <num type=num>{{item.quantity}}</num>
-
-                    <i class="fas fa-plus-square" 
+                        <h4 class="col-1">{{item.quantity}}</h4>
+                                       
+                        <i class="fas fa-plus-square col-1" 
                          @click="addToCart({product:item.product, quantity:1})" type=button>
-                    </i>
+                        </i>
 
-                    <small>{{item.quantity*item.product.price}}</small>
+                        <h4 class="col-1">{{item.quantity*item.product.price}}</h4>
+
 
                     </div>
+                    
                    
-                  
-
-                </div>
-                
-    
-  
+                    
+                </table>
 </template>
-
 <script>
-
 import { mapActions } from 'vuex'
 export default {
-
     props:['item'],
     methods:{
         ...mapActions(['addToCart','removeFromCart'])       
@@ -46,26 +40,49 @@ export default {
 
 
 .shopping-cart{
-    
-    text-align: center;
-    z-index: 100;
+    align-items: center;
     display: flex;
-    width: 500px;
     font-size: 40px;
-    column-gap: 2rem;
+    height: 100px;
+    border-bottom: 1px black solid;
+
 }
 .shopping-cart img{
-    margin-left: 2rem;
+    width: 80px;
+    height: 80%;
+    align-self: left;
 }
 .shopping-cart i{
-    font-size: 20px;
-    color: rgb(4, 0, 255);
+    color: rgb(0, 0, 0);
+    font-size: 30px;
     
   
 }
 
 i :hover {
     cursor:pointer;
+}
+
+.item-quantity{
+    position: relative;
+    margin-left: 2rem;
+    margin-right: 1rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 70%;
+    justify-content: space-between;
+    text-align:center;
+    display: flex;
+    gap: 3rem;
+   
+}
+.item-name{
+    font-size: 12px;
+}
+
+.fas fa-minus-square{
+    position: absolute;
+    left: 0%;
 }
 
 

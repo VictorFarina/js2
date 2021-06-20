@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt')
 //hämta bcrypt för attkunna kryptera användarens lösenord innan den sparas i databasen
 const auth = require('../../auth/auth')
 
-
 exports.registerUser = (req, res) => { 
   //funktionen ska innehålla en parameter för request och ett för respond
   User.exists({email: req.body.email}, (err, result) => { 
@@ -96,8 +95,6 @@ exports.loginUser = (req, res) => {
       }
 
       
-
-      
       bcrypt.compare(req.body.password, user.passwordHash, (err, result) => {
         if (err) {
           return res.status(400).json({
@@ -114,6 +111,7 @@ exports.loginUser = (req, res) => {
             status: true,
             message: "Authentication was successfully.",
             token: auth.generateToken(user),
+            user,
           })
         }
 
@@ -128,10 +126,6 @@ exports.loginUser = (req, res) => {
   })
 
 }
-
-
-
-
 
 exports.getUser = (req, res) => {
   User.findOne({ email: req.params.id }).then((user) => {

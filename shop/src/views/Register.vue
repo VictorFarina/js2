@@ -61,7 +61,7 @@
         Optional - for two step authentication
       </small>
       <!-- Sign up button -->
-      <button class="btn btn-dark" type="submit">Sign Up</button>
+      <button class="btn btn-dark" type="submit">Bli medlem</button>
 
     </form>
     <!-- Default form register -->
@@ -108,13 +108,10 @@ export default {
   margin-top: 5rem;
 }
 .register button{
-  background: #;
   width: 70%;
   margin: auto;
-  box-shadow: 1px 1px 1px 1px rgba(51, 51, 51, 0.253);
   margin-bottom: 5rem;
   background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 </style>

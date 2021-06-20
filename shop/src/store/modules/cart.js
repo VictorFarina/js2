@@ -55,7 +55,15 @@ export default {
       {
         console.log('cant delete mote');
       }
+    },
+
+    CLEAR_CART: (state) => {
+      state.cart = [];
+
     }
+
+
+
   },
 
   actions: {
@@ -73,5 +81,17 @@ export default {
           quantity
         })
       },   
+
+      clearCart: ({ commit }) => {
+        commit("CLEAR_CART");
+      },
+
+
+
+
   }
+
+
+
+
 }

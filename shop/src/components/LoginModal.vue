@@ -34,7 +34,7 @@
         <div class="form-outline">
 
 
-    <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
+    <button type="submit" class="btn btn-dark btn-block">LOGGA IN</button>
 
    
           <router-link class="nav-link active sign-up" to="/register">NOT A MEMBER?</router-link>

@@ -1,14 +1,22 @@
-<template>
-<form @submit.prevent="onSub" class="confirmation" >
-    <div class="cart">
+    <template>
+        <form @submit.prevent="onSub" class="confirmation ">
+            <Cart class="mt-5"/>
+            <div class="d-flex">
+                
+            <button class="p-5 w-50 d btn-dark mx-cente">
+                <h2>slutför köp</h2>
+            </button>
 
-   
 
-        <Cart/>
+            </div>
 
-    </div>
-      
-</form>
+           
+
+
+
+        </form>
+
+
 </template>
 
 <script>
@@ -17,11 +25,9 @@ import { mapActions, mapGetters } from 'vuex'
 import Cart from '../components/Cart'
 
 
-export default {
-   
+export default { 
     components:{
         Cart
-        
     },
     name:"Checkout",
     computed: {
@@ -29,11 +35,13 @@ export default {
     }, 
      methods: {
 
-         ...mapActions(['addToOrders']),
+         ...mapActions(['addToOrders', 'clearCart']),
 
          onSub(){
             let userCart = this.cart
             this.addToOrders({userCart})
+            .then 
+          
          }
     }
 }
@@ -43,23 +51,11 @@ export default {
 <style scoped>
 
 .confirmation {
-    display: flex;
-    width:90%;
-    margin: auto;
-    margin: auto;
+    position: relative;
+    width:40%;
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.cart{
-    position: absolute;
-    height: 30px;
-    
-    top: 30%;
-    left: 50%;
-    margin:auto;
-   
-}
-
-
-
 
 </style>

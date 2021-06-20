@@ -1,6 +1,6 @@
 <template>
     
-        <div class="container row">
+        <div class="product-container">
             <ProductCard 
               v-for="product in products" :key="product._id" :product="product"/> 
         </div>
@@ -32,14 +32,18 @@ export default {
 
 <style scoped>
 
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5rem;
+.product-container {
+
+  
   height: 100%;
+  margin-top: 6rem;
   display: flex;
   flex-flow: wrap;
-  gap:0.3rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  /* row-gap: 0.4rem;
+  column-gap: 0.4rem; */
 
 }
 

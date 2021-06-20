@@ -1,37 +1,19 @@
 <template>
-
-  <div class="product-card">
+  <div class="product-card ">
     <div class="card-top position-relative">
       <img class="img1" :src="product.img" alt="#">
       <router-link :to="{name:'ProductPage', params: {id: product._id} }">  
         <h3 class="see-more btn btn-block position-absolute">läs mer</h3>
       </router-link>
-
     </div>
-
-    <div class="card-info">
-        
+    <div class="card-info">        
         <p class="block">{{product.name}}</p>
         <small>{{product.short}}</small>
         <p>{{product.price +' '+ 'sek'}}</p>
-        <button  @click="addToCart({product, quantity:1})" type="button" class="btn btn-block btn-light foont-weight-700 mb-5 bottom-0">LÄGG I KORGEN</button>     
-       
-
-    </div>
-
-      
-      
-    
-
-
-      
-
-    
+        <button  @click="addToCart({product, quantity:1})" type="button" class="btn btn-block btn-dark foont-weight-700 mb-5 bottom-0">LÄGG I KORGEN</button>     
+    </div>    
   </div>
-
-
 </template>
-
 <script>
 import { mapActions } from 'vuex'
 //-----IMPORTS----------------------------------------
@@ -69,18 +51,19 @@ body {
 }
 
 .product-card {
+
   width: 500px;
+  height: 400px;
+  margin: auto;
   text-align: center;
   box-shadow: 1px 1px 1px 1px rgba(218, 215, 215, 0.329);
 }
 
 
 .card-top {
-
   margin-top: 2rem;
   min-height: 200px;
   max-height: 200px;
-
 
 }
 .card-top img{

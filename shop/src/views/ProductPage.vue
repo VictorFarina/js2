@@ -1,22 +1,16 @@
 <template>
-    <div class="details-card row col-lg-8 col-sm-12 mx-auto mt-5 pb-5 z-depth-1">
-      <img class="prod-img align-text-"
+    <div class="row col-lg-8 col-sm-12 mx-auto mt-5 pt-5 pb-5 z-depth-1">
+      <img class="prod-img"
       :src="product.img">
-
-      <div class="product-info col-lg-6 col-sd">
-        
-        <h3>{{product.name}}</h3>
-        <small>{{product.short}}</small>
+      <div class="product-info col-lg-8 col-sd">
+        <h3>{{product.name}} <span> <small class="font-weight-light">{{product.short}}</small></span></h3>
         <h3 class="text-danger">{{product.price}}sek</h3>
-         <button class="btn btn-dark block fw-bold" 
+         <button class="btn btn-dark block fw-bold p-3" 
          @click="addToCart({product, quantity:1})"
         >Lägg i korgen</button>
         <br>
         <br>
-        <small>{{product.desc}}</small>
-
-
-       
+        <small >{{product.desc}}</small>
       </div>
     </div>  
 </template>
@@ -27,24 +21,18 @@ import { mapActions,mapGetters} from 'vuex'
 export default {
   name:'ProductPage',
   props:['id'], 
-  
   methods: {
     ...mapActions(['getThisProduct','resetToNull','addToCart']),
   },
-
   computed: {
     ...mapGetters(['product']) 
   },
-
   created() {
     this.getThisProduct(this.id) 
-    
   },
-
   destroyed() {
     this.resetToNull()
   }
-
   
 }
 //-------------------------------------------------------------------------------
