@@ -6,18 +6,14 @@
 
                     <div class="item-quantity justify-content-end col-5">
                          <i class="fas fa-minus-square col-1"  
-                        @click="removeFromCart({product:item.product, quantity:1})"> 
+                        @click.stop="removeFromCart({product:item.product, quantity:1})"> 
                         </i>
-
-                        <h4 class="col-1">{{item.quantity}}</h4>
-                                       
+                        <h4 class="col-1">{{item.quantity}}</h4>              
                         <i class="fas fa-plus-square col-1" 
-                         @click="addToCart({product:item.product, quantity:1})" type=button>
+                         @click.stop="addToCart({product:item.product, quantity:1})" type=button>
                         </i>
 
                         <h4 class="col-1">{{item.quantity*item.product.price}}</h4>
-
-
                     </div>
                     
                    

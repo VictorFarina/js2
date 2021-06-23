@@ -52,6 +52,8 @@ export default {
         logoutUser: ({commit}) => {commit('LOGOUT_USER')},
 
 
+ 
+
         addToOrders: ({ dispatch }, {userCart})  => {
                 axios.patch('users/addorder', userCart)
                 .then(res => {
