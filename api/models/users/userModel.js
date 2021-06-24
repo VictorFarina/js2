@@ -50,7 +50,7 @@ exports.registerUser = (req, res) => {
         firstName:      req.body.firstName,
         lastName:       req.body.lastName,
         email:          req.body.email,
-        passwordHash:   hash, 
+        passwordHash:   hash,
       })
       //annars skapar vi en en newUser som innehåller en ny instans objectet User (se userSchema) och likställer varje property med det som användaren skickat med i body i request, här kan vi också välja att likställa  propertyn passwordHash med det hash som vi tidigarde skapade. tex  firstName:  req.body.firstName,  passwordHash: hash 
 
@@ -147,9 +147,25 @@ exports.getUser = (req, res) => {
   })
 }
 
+
 exports.addToOrders =(req, res) => {
-  User.updateOne ({$push:{orders: req.body}}) 
-    .then(()=>{
+
+  User.exists({ email: req.params.id }, (err, result) => {
+    if (err) {
+      return res.status(400).json({
+        statusCode: 400,
+        status: false,
+        message: "You made a bad request.",
+      })
+    }
+
+    if (result) {
+      User.updateOne(
+        { email: req.params.id },
+        { $push: { orders: req.body } }
+      )
+    
+    .then( () => {
       res.status(200).json({
         statusCode:200,
         status:true,
@@ -163,7 +179,11 @@ exports.addToOrders =(req, res) => {
           message: 'failed to update user'
       })
     })
+    }
+  })
 }
+
+
 
 
 

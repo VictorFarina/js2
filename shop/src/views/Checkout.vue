@@ -1,9 +1,9 @@
     <template>
-        <form @submit.prevent="onSub" class="confirmation ">
+        <div class="confirmation ">
             <Cart class="mt-5"/>
             <div class="d-flex">
                 
-            <button class="p-5 w-50 d btn-dark mx-cente">
+            <button @click="onSub" class="p-5 w-50 d btn-dark mx-cente">
                 <h2>slutför köp</h2>
             </button>
 
@@ -14,7 +14,7 @@
 
 
 
-        </form>
+        </div>
 
 
 </template>
@@ -26,24 +26,27 @@ import Cart from '../components/Cart'
 
 
 export default { 
+
     components:{
         Cart
     },
+    
     name:"Checkout",
     computed: {
         ...mapGetters(['cart','activeUser'])
     }, 
-     methods: {
 
+     methods: {
          ...mapActions(['addToOrders', 'clearCart']),
 
-         onSub(){
-            let userCart = this.cart
-            this.addToOrders({userCart})
-            .then 
-          
-         }
+         onSub() {
+            // this.activeUser.orders.push(this.cart)          
+            // console.log('after:', this.activeUser)
+              this.addToOrders(this.cart)
+        }
+
     }
+
 }
 
 </script>

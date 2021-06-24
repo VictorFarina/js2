@@ -39,6 +39,7 @@ export default {
         exists.quantity += quantity
         return
       }
+
       state.cart.push({product, quantity})
       //pushing in new object in to cart, with the properties product and quantity
     }, 
@@ -62,8 +63,6 @@ export default {
 
     }
 
-
-
   },
 
   actions: {
@@ -85,8 +84,6 @@ export default {
       clearCart: ({ commit }) => {
         commit("CLEAR_CART");
       },
-
-
 
 
   }
