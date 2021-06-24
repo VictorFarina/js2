@@ -2,23 +2,26 @@
 
   <div class="z-depth-3">
 
-    <CartItemsCard v-for="item in cart" :key="item.product._id" :item="item" /> 
+    <CartItemsCard v-for="item in cart" :key="item.product._id" :item="item" />    
 
       <div class="total align-items-center justify-content-between">
 
-          <router-link class="btn btn-dark"
-          
-            v-show="$route.name!=='Checkout'" v-if="loggedIn" to="/checkout">Slutför köp
+            <router-link class="btn btn-dark"
 
-          </router-link>
-          
-          <router-link  class="btn btn-dark"
+                v-show="$route.name!=='Checkout' " v-if="loggedIn && cartTotal  > 0" to="/checkout">Slutför köp
 
-            v-if="!loggedIn" to="/login">Logga in
+            </router-link>             
 
-          </router-link>
+            <router-link  class="btn btn-dark"
 
-          <h3 v-if="cart.items <1" class="p-3">Total:{{cartTotal +' '+'sek'}}</h3>
+              v-if="!loggedIn" to="/login">Logga in
+
+            </router-link>
+
+          <h3 v-if="cartTotal>0" class="p-3">Total:{{cartTotal +' '+'sek'}}</h3>
+
+          <h3 v-else class="p-3">Din korg är tom</h3>
+
       </div>
 
   </div>

@@ -48,7 +48,6 @@ export default {
 
       let exists = state.cart.find(item => item.product._id === product._id)
       if(exists) {
-
         exists.quantity -= quantity
         return
 
@@ -61,7 +60,20 @@ export default {
     CLEAR_CART: (state) => {
       state.cart = [];
 
-    }
+    },
+
+    REMOVE_ITEM:(state ,{ product}) => {
+
+      let exists = state.cart.find(item => item.product._id === product._id)
+      if(exists) {
+      const index = state.cart.indexOf(exists);
+      state.cart.splice(index,1)
+
+      } else
+      {
+        console.log('cant delete mote');
+      }
+    },
 
   },
 
@@ -84,6 +96,10 @@ export default {
       clearCart: ({ commit }) => {
         commit("CLEAR_CART");
       },
+
+      removeItem:({commit},{product}) => {
+        commit('REMOVE_ITEM',{product});
+      }
 
 
   }

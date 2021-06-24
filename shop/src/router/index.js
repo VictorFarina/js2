@@ -8,7 +8,9 @@ import Register from '../views/Register.vue'
 import ProductPage from '../views/ProductPage.vue'
 import UserView from '../views/UserView.vue'
 import Checkout from '../views/Checkout.vue'
+import Confirmation from '../views/Confirmation.vue'
 import store from '@/store'
+
 Vue.use(VueRouter)
 
 
@@ -75,6 +77,18 @@ const routes = [
     component: Checkout,
 
     meta: { authorize: true }
+
+  
+
+  },
+
+  {
+
+    path: '/confirmation',
+
+    name: 'Confirmation',
+
+    component: Confirmation
 
   
 

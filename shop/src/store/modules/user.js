@@ -51,9 +51,8 @@ export default {
 
         logoutUser: ({commit}) => {commit('LOGOUT_USER')},
 
-        addToOrders: ({state, dispatch},cart)  => {
-
-                axios.patch(`users/addorder/${state.activeUser.email}`,cart,  
+        addToOrders: ({state, dispatch}, order)  => {
+                axios.patch(`users/addorder/${state.activeUser.email}`,order,  
                     {
                         headers: { Authorization: "Bearer " + state.activeUser.token },
                     }
@@ -61,11 +60,14 @@ export default {
                     dispatch('updateUser')
                 })    
             },
+
         updateUser: ({state, commit}) => {
             axios.get(`users/${state.activeUser.email}`,  
+
                     {
                         headers: { Authorization: "Bearer " + state.activeUser.token },
                     }
+
                 ).then((res) => {
                     if(res.status === 200) {
                         commit('LOGIN_USER', {...res.data.user, token: state.activeUser.token})
@@ -74,8 +76,5 @@ export default {
                     }
                 })    
         }
-
     }
-  
-
 }

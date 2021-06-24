@@ -3,9 +3,13 @@
             <Cart class="mt-5"/>
             <div class="d-flex">
                 
-            <button @click="onSub" class="p-5 w-50 d btn-dark mx-cente">
-                <h2>slutför köp</h2>
-            </button>
+           
+
+            <router-link to="/confirmation">
+                <button v-show="cartCounter > 0"  @click="onSub"  class="p-5 w-50 d btn-dark mx-cente">
+                    <h2>slutför köp</h2>
+                </button>
+            </router-link>        
 
 
             </div>
@@ -30,25 +34,27 @@ export default {
     components:{
         Cart
     },
-    
     name:"Checkout",
     computed: {
-        ...mapGetters(['cart','activeUser'])
+        ...mapGetters(['cart','activeUser','cartCounter','cartTotal'])
     }, 
-
      methods: {
          ...mapActions(['addToOrders', 'clearCart']),
-
          onSub() {
             // this.activeUser.orders.push(this.cart)          
             // console.log('after:', this.activeUser)
-              this.addToOrders(this.cart)
+            let order = {
+                date:Date(),
+                order:this.cart,
+                totalPrice:this.cartTotal
+
+            } 
+            
+            
+            this.addToOrders(order)
         }
-
-    }
-
+     }
 }
-
 </script>
 
 <style scoped>

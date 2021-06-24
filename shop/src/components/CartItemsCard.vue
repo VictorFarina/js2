@@ -5,15 +5,25 @@
                     <span class="item-name col-3">{{item.product.name}}</span>
 
                     <div class="item-quantity justify-content-end col-5">
-                         <i class="fas fa-minus-square col-1"  
+
+                         <i v-if="item.quantity>1" class="fas fa-minus-square col-1 cursor-pointer"  
                         @click.stop="removeFromCart({product:item.product, quantity:1})"> 
                         </i>
-                        <h4 class="col-1">{{item.quantity}}</h4>              
+
+                        <i v-if="item.quantity<2" class="fas fa-trash col-1 cursor-pointer"  
+                        @click.stop="removeItem({product:item.product})"> 
+                        </i>
+
+
+                        <h4 class="col-1">{{item.quantity}}</h4>       
+
+
                         <i class="fas fa-plus-square col-1" 
                          @click.stop="addToCart({product:item.product, quantity:1})" type=button>
                         </i>
 
                         <h4 class="col-1">{{item.quantity*item.product.price}}</h4>
+
                     </div>
                     
                    
@@ -23,15 +33,15 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
+
+
     props:['item'],
     methods:{
-        ...mapActions(['addToCart','removeFromCart'])       
+        ...mapActions(['addToCart','removeFromCart','removeItem'])       
     }
 }
 </script>
 <style scoped>
-
-
 
 
 
@@ -43,11 +53,13 @@ export default {
     border-bottom: 1px black solid;
 
 }
+
 .shopping-cart img{
     width: 80px;
     height: 80%;
     align-self: left;
 }
+
 .shopping-cart i{
     color: rgb(0, 0, 0);
     font-size: 30px;
@@ -55,7 +67,7 @@ export default {
   
 }
 
-i :hover {
+.shopping-cart i :hover {
     cursor:pointer;
 }
 

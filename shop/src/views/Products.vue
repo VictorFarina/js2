@@ -15,7 +15,8 @@ import { mapGetters} from 'vuex'
 
 //-----EXPORTS--------------------------------------
 export default {
-  name:'Products',
+  name:"Products",
+  
   components: {
 
     ProductCard
