@@ -4,12 +4,12 @@ import router from '@/router'
 export default {  
     state: {
         loggedIn: false,
-        activeUser:{
-        }
+        activeUser:{},
     },  
+
     getters: {
         loggedIn: state => state.loggedIn,
-        activeUser: state=> state.activeUser
+        activeUser: state=> state.activeUser,
     },
     mutations: {
         LOGIN_USER: (state, data) => {
@@ -19,20 +19,22 @@ export default {
         }, 
         LOGOUT_USER: state => {
             state.loggedIn = false
+            state.activeUser = {},
+
             console.log(state.loggedIn);
         },  
+       
     },
     actions: {
             register: async ({ dispatch }, _user) => { 
                 await axios.post('users/register', _user)  
+                    .then(()=> {
                         const user = {
-                        email:    _user.email, 
-                        password: _user.password                  
-                        }
-                            dispatch('login',user) 
-        },
-
-
+                            email:    _user.email, 
+                            password: _user.password 
+                    }
+                    dispatch('login',user) })
+            },
         login: ({commit}, user, route ) => {
 
             axios.post('users/login', user)
@@ -42,22 +44,30 @@ export default {
                    if (route) {
                     router.push(route)   
                    } else  {
-                       router.push('/')                                
+                       router.push('/checkout')                                
                  }   
                }
            })
            
         },
 
-        logoutUser: ({commit}) => {commit('LOGOUT_USER')},
+        logoutUser: ({commit}) => {
+            router.push('/products')
+            .then(
+                commit('LOGOUT_USER')
+            )
+        },
 
         addToOrders: ({state, dispatch}, order)  => {
                 axios.patch(`users/addorder/${state.activeUser.email}`,order,  
+
                     {
                         headers: { Authorization: "Bearer " + state.activeUser.token },
                     }
+
                 ).then(() => {
                     dispatch('updateUser')
+                    router.push('/confirmation')
                 })    
             },
 
@@ -75,6 +85,6 @@ export default {
                         console.log('error');
                     }
                 })    
-        }
+        },
     }
 }

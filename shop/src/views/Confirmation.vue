@@ -1,23 +1,25 @@
 <template>
 
-<div class="container w-50 mx-auto mt-5  mt-3 text-center border border-success">
 
-    <h2 class="mt-5">
-        Tack för din beställning {{activeUser.firstName}}!
-    </h2>
+<div class="card pb-5">
 
-    <ul>
-        <li>
-            {{this.activeUser.orders[0].order.date}}
+        <div class="container w-50 mx-auto mt-5  mt-3 text-center border border-success alert alert-success">
 
-        </li>
-      
-    </ul>
+            <h2 class="mt-5">
+                Tack för din beställning {{activeUser.firstName}} !
+            </h2>   
+        
+        </div>
 
-    
+    <div class="container w-50 mx-auto mt-5 text-center">
+        <router-link class="btn btn-dark" to="/products">Fortsätt shoppa?</router-link>
+        <button @click="logoutUser" class="btn btn-dark"> Logga ut </button>
 
+    </div>
 
 </div>
+
+
 
 
   
@@ -26,7 +28,6 @@
 <script>
 
 import {mapGetters,mapActions} from 'vuex'
-// import LastOrder from '../components/LastOrder'
 
 
 export default {
@@ -36,14 +37,13 @@ export default {
     name:"Confirmation",
 
     components: {
-        // LastOrder
     },
     computed: {
         ...mapGetters(['cart','activeUser'])
     }, 
 
      methods: {
-         ...mapActions([ 'updateUser']),
+         ...mapActions([ 'updateUser','logoutUser']),
 
         // getLastOrder(){
         //       const latestOrder = this.activeUser.orders[0]

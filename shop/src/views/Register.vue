@@ -1,12 +1,24 @@
 <template>
-  <div>
+  <div class="bg position-relative">
+
+  
+
+    
     <!-- Default form register -->
-    <form
+    <form 
       @submit.prevent="addUser"
-      class="text-center register"
+      class="text-center register z-index-n1"
       action="#!"
-    >
+      
+        >   
+
+        
+
+
       <p class="h4 mb-4">Sign up</p>
+
+      
+
       <div class="form-row mb-4">
         <div class="col">
           <!-- First name -->
@@ -16,6 +28,7 @@
             id="defaultRegisterFormFirstName"
             class="form-control"
             placeholder="First name"
+            value=""
           />
         </div>
         <div class="col">
@@ -59,19 +72,35 @@
         class="form-text text-muted mb-4"
       >
         Optional - for two step authentication
+        
       </small>
       <!-- Sign up button -->
       <button class="btn btn-dark" type="submit">Bli medlem</button>
 
+
+      
+
+      
+
     </form>
-    <!-- Default form register -->
+
+    <!-- Vertically centered modal -->
+    
+
+        
+   
+
   </div>
+
+
+  
 </template>
 <script>
 
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name:'Register',
+
 
   data() {
 
@@ -81,7 +110,7 @@ export default {
           lastName:'',
           password:'',
           email:'',
-        }
+        },
       }
   },
   computed: {
@@ -93,13 +122,31 @@ export default {
     addUser() {
       // return console.log(this.user);
       this.register(this.user)
-      
-    }
+    },
+
+  
+
+
+
+    
+
+
+  
   }
 }
 </script>
 
 <style scoped>
+
+.error{
+  z-index: 100;
+  background: rgba(51, 51, 51, 0.076);
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+}
+
 
 .register{
   width: 700px;

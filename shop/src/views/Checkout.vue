@@ -1,26 +1,14 @@
     <template>
-        <div class="confirmation ">
+        <form @submit.prevent="onSub" class="confirmation">
             <Cart class="mt-5"/>
             <div class="d-flex">
-                
-           
 
-            <router-link to="/confirmation">
-                <button v-show="cartCounter > 0"  @click="onSub"  class="p-5 w-50 d btn-dark mx-cente">
-                    <h2>slutför köp</h2>
-                </button>
-            </router-link>        
-
+                <button type="submit" class="btn btn-block p-5 w-50 d btn-dark btn-block mx-center" v-show="cartCounter > 0">
+                        slutför köp
+                </button>       
 
             </div>
-
-           
-
-
-
-        </div>
-
-
+        </form>
 </template>
 
 <script>
@@ -30,7 +18,6 @@ import Cart from '../components/Cart'
 
 
 export default { 
-
     components:{
         Cart
     },
@@ -40,18 +27,22 @@ export default {
     }, 
      methods: {
          ...mapActions(['addToOrders', 'clearCart']),
+
          onSub() {
             // this.activeUser.orders.push(this.cart)          
             // console.log('after:', this.activeUser)
             let order = {
+
                 date:Date(),
                 order:this.cart,
                 totalPrice:this.cartTotal
-
+                
             } 
-            
-            
+
+            console.log(order)
+
             this.addToOrders(order)
+            this.clearCart()
         }
      }
 }

@@ -25,7 +25,8 @@ exports.registerUser = (req, res) => {
       return res.status(400).json({
         statusCode: 400,
         status: false,
-        message: 'The email address is already taken',
+        message:'The email address is already taken',
+        
       })
     } 
     //om vi få tillbaka ett resultat betyder det att det fans en User med samma mail. Även i detta fall returners ett respons med status 400 och men med som meddelar att mailen redan finns 

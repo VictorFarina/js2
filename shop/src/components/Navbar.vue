@@ -3,30 +3,35 @@
     <router-link class="nav-link active ml-5" to="/"><img src="@/assets/barbero.png" height="100px" alt=""/></router-link>
     <h4>papito.se</h4>
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-      <ul class="nav justify-content-center">
+      <ul class="nav justify-content-center list-unstyled">
         <li class="nav-item active ml-5">
           <router-link class="nav-link active" to="/">Home</router-link>
         </li>
-        <li class="nav-item active ml-5">
+        <li class="nav-item active ml-5 ">
           <router-link class="nav-link active" to="/products"
             >Produkter</router-link
           >
-        </li>
+        </li> 
+
         <li class="nav-item active ml-5">
           <router-link class="nav-link active" to="/about">About us</router-link>
         </li>
+
       </ul>
     </div>
-    <div class="row d-flex align-items-center">
-          <li v-if="loggedIn">
-          <router-link  class="nav-link" to="/checkout" 
-          @click="logout"><i class="fas fa-user"></i></router-link>
-          </li>
-        <li v-else>
-          <router-link  class="nav-link col-3" to="/checkout"><p>LOGIN</p></router-link >
+
+    <div class="row d-flex align-items-center list-unstyled align-items-start">
+      
+        <li v-if="loggedIn">
+          <a  @click="logoutUser" class="nav-link col-3 mt-5" to="/checkout"><p>LOGOUT</p></a >
         </li>
-        <button v-if="loggedIn" @click="logout">logout</button>
-        <div class="dropdown mr-5" v-on:click="displayBlock=!displayBlock">
+
+        <li v-else>
+          <router-link  class="nav-link col-3 mt-5" to="/checkout"><p>LOGIN</p></router-link >
+        </li>
+
+
+        <div class="dropdown mr-5 mt-3" v-on:click="displayBlock=!displayBlock">
             <i class="fas fa-shopping-bag position-relative" type="button" >
                 <span class="cart-counter">
                     {{cartCounter}}
@@ -56,8 +61,9 @@ export default {
     ...mapGetters(["cartCounter","loggedIn"]),
   },
   methods:{
-    ...mapActions(['logoutUser']),
+    ...mapActions(['logoutUser','clearCart']),
     logout(){
+      this.clearCart()
       this.logoutUser()
     }
   }
